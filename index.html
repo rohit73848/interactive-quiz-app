@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Quiz App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="./quiz-favIcon.png" type="image/x-icon">
+  </head>
+  <body>
+    <div class="main">
+      <h1 class="app-title">Quiz App</h1>
+
+      <!-- Quiz Screen -->
+      <div class="quiz-box" id="quiz-box">
+        <div class="quiz-header">
+          <span class="progress-text" id="progress-text">Question 1 of 10</span>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="progress-bar-fill"></div>
+          </div>
+        </div>
+
+        <h2 class="question-text" id="question-text">Question goes here</h2>
+
+        <div class="options-list" id="options-list">
+          <!-- JS দিয়ে option গুলো এখানে বসবে -->
+        </div>
+
+        <div class="quiz-footer">
+          <button class="nav-btn" id="prev-btn">Previous</button>
+          <button class="nav-btn primary" id="next-btn">Next</button>
+        </div>
+      </div>
+
+      <!-- Result Screen (শুরুতে hidden) -->
+      <div class="result-box" id="result-box">
+        <p class="result-label">Your Score</p>
+        <h2 class="result-score" id="result-score">0 / 10</h2>
+        <p class="result-message" id="result-message">Well done!</p>
+        <button class="nav-btn primary" id="retake-btn">Retake Quiz</button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
