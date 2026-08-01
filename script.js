@@ -57,7 +57,7 @@ function render() {
 
   let optionsHTML = currentQuestion.options
     .map((option, index) => {
-      return `<div class="option" data-index="${index}">${option}</div>`;
+      return `<div class="option ${userAnswers[currentQuestionIndex] === index ? "selected" : ""}" data-index="${index}">${option}</div>`;
     })
     .join("");
 
