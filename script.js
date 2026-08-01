@@ -66,5 +66,14 @@ function render() {
   progressText.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
   progressBarFill.style.width = `${((currentQuestionIndex + 1) / questions.length) * 100}%`;
 }
+optionsList.addEventListener("click", (e) => {
+  if (e.target.classList.contains("option")) {
+    let allOptions = document.querySelectorAll(".option");
+    allOptions.forEach((opt) => {
+      opt.classList.remove("selected");
+    });
 
+    e.target.classList.add("selected");
+  }
+});
 render();
