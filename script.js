@@ -64,6 +64,7 @@ function render() {
   optionsList.innerHTML = optionsHTML;
   progressText.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
   progressBarFill.style.width = `${((currentQuestionIndex + 1) / questions.length) * 100}%`;
+  nextBtn.textContent = currentQuestionIndex === questions.length - 1 ? "Submit" : "Next";
 }
 
 let userAnswers = new Array(questions.length).fill(null);
@@ -82,9 +83,16 @@ optionsList.addEventListener("click", (e) => {
 });
 let nextBtn = document.getElementById("next-btn");
 nextBtn.addEventListener("click", () => {
-  if (currentQuestionIndex < questions.length - 1) {
-    currentQuestionIndex++;
-    render();
+  if (currentQuestionIndex === questions.length - 1) {
+    let score = questions.filter((question, index) => {
+  return userAnswers[index] === question.correctAnswer;
+}).length;
+    console.log("Final Score:", score);
+  } else {
+    if (currentQuestionIndex < questions.length - 1) {
+      currentQuestionIndex++;
+      render();
+    }
   }
 });
 let prevBtn = document.getElementById("prev-btn");
