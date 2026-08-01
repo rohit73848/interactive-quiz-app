@@ -50,10 +50,12 @@ let questionText = document.getElementById("question-text");
 let optionsList = document.getElementById("options-list");
 let progressText = document.getElementById("progress-text");
 let progressBarFill = document.getElementById("progress-bar-fill");
+let errorMsg = document.getElementById("error-msg");
 
 let quizBox = document.getElementById("quiz-box");
 let resultBox = document.getElementById("result-box");
 let resultScore = document.getElementById("result-score");
+let retakeBtn = document.getElementById("retake-btn");
 
 let prevBtn = document.getElementById("prev-btn");
 
@@ -87,9 +89,15 @@ optionsList.addEventListener("click", (e) => {
     let selectedIndex = Number(e.target.dataset.index);
     userAnswers[currentQuestionIndex] = selectedIndex;
   }
+  errorMsg.style.display = "none";
 });
 let nextBtn = document.getElementById("next-btn");
 nextBtn.addEventListener("click", () => {
+    if (userAnswers[currentQuestionIndex] === null) {
+    errorMsg.style.display = "block";
+    return;
+  }
+  errorMsg.style.display = "none";
   if (currentQuestionIndex === questions.length - 1) {
     let score = questions.filter((question, index) => {
       return userAnswers[index] === question.correctAnswer;
@@ -111,5 +119,12 @@ prevBtn.addEventListener("click", () => {
     currentQuestionIndex--;
     render();
   }
+});
+retakeBtn.addEventListener("click", () => {
+  currentQuestionIndex = 0;
+  userAnswers.fill(null);
+  quizBox.style.display = "block";
+  resultBox.style.display = "none";
+  render();
 });
 render();

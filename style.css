@@ -109,7 +109,12 @@ body {
   border-color: var(--accent);
   background-color: rgba(46, 160, 67, 0.12);
 }
-
+.error-msg {
+  display: none;
+  color: var(--error-color);
+  font-size: 13px;
+  margin-bottom: 16px;
+}
 .quiz-footer {
   display: flex;
   justify-content: space-between;
