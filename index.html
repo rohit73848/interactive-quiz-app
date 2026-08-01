@@ -5,20 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Interactive Quiz App</title>
     <link
-  href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
-  rel="stylesheet"
-/>
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
-    <link rel="shortcut icon" href="./quiz-favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./quiz-favicon.png" type="image/x-icon" />
   </head>
   <body>
     <div class="main">
-      <h1 class="app-title">Quiz App</h1>
+      <div class="app-header">
+        <span class="badge"><i class="ri-code-s-slash-line"></i> JavaScript Quiz</span>
+        <h1 class="app-title">Test your knowledge</h1>
+      </div>
 
       <!-- Quiz Screen -->
       <div class="quiz-box" id="quiz-box">
         <div class="quiz-header">
-          <span class="progress-text" id="progress-text">Question 1 of 10</span>
+          <div class="quiz-header-top">
+            <span class="progress-text" id="progress-text">Question 1 of 10</span>
+            <div class="dots" id="dots"></div>
+          </div>
           <div class="progress-bar-track">
             <div class="progress-bar-fill" id="progress-bar-fill"></div>
           </div>
@@ -29,19 +35,28 @@
         <div class="options-list" id="options-list">
           <!-- JS দিয়ে option গুলো এখানে বসবে -->
         </div>
-        <p class="error-msg" id="error-msg">Please select an answer to continue.</p>
+        <p class="error-msg" id="error-msg">
+          <i class="ri-error-warning-line"></i> Please select an answer to continue.
+        </p>
         <div class="quiz-footer">
-          <button class="nav-btn" id="prev-btn"><i class="ri-arrow-left-double-line arrow"></i> Previous</button>
-          <button class="nav-btn primary" id="next-btn">Next <i class="ri-arrow-right-double-line arrow"></i></button>
+          <button class="nav-btn" id="prev-btn">
+            <i class="ri-arrow-left-double-line arrow"></i> Previous
+          </button>
+          <button class="nav-btn primary" id="next-btn">
+            Next <i class="ri-arrow-right-double-line arrow"></i>
+          </button>
         </div>
       </div>
 
       <!-- Result Screen (শুরুতে hidden) -->
       <div class="result-box" id="result-box">
+        <i class="ri-trophy-line result-icon"></i>
         <p class="result-label">Your Score</p>
         <h2 class="result-score" id="result-score">0 / 10</h2>
         <p class="result-message" id="result-message">Well done!</p>
-        <button class="nav-btn primary" id="retake-btn">Retake Quiz</button>
+        <button class="nav-btn primary" id="retake-btn">
+          <i class="ri-refresh-line arrow"></i> Retake Quiz
+        </button>
       </div>
     </div>
     <script src="script.js"></script>
