@@ -51,6 +51,12 @@ let optionsList = document.getElementById("options-list");
 let progressText = document.getElementById("progress-text");
 let progressBarFill = document.getElementById("progress-bar-fill");
 
+let quizBox = document.getElementById("quiz-box");
+let resultBox = document.getElementById("result-box");
+let resultScore = document.getElementById("result-score");
+
+let prevBtn = document.getElementById("prev-btn");
+
 function render() {
   let currentQuestion = questions[currentQuestionIndex];
   questionText.textContent = currentQuestion.question;
@@ -64,7 +70,8 @@ function render() {
   optionsList.innerHTML = optionsHTML;
   progressText.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
   progressBarFill.style.width = `${((currentQuestionIndex + 1) / questions.length) * 100}%`;
-  nextBtn.textContent = currentQuestionIndex === questions.length - 1 ? "Submit" : "Next";
+  nextBtn.textContent =
+    currentQuestionIndex === questions.length - 1 ? "Submit" : "Next";
 }
 
 let userAnswers = new Array(questions.length).fill(null);
@@ -85,9 +92,13 @@ let nextBtn = document.getElementById("next-btn");
 nextBtn.addEventListener("click", () => {
   if (currentQuestionIndex === questions.length - 1) {
     let score = questions.filter((question, index) => {
-  return userAnswers[index] === question.correctAnswer;
-}).length;
+      return userAnswers[index] === question.correctAnswer;
+    }).length;
     console.log("Final Score:", score);
+
+    quizBox.style.display = "none";
+    resultBox.style.display = "block";
+    resultScore.textContent = `${score} / ${questions.length}`;
   } else {
     if (currentQuestionIndex < questions.length - 1) {
       currentQuestionIndex++;
@@ -95,11 +106,10 @@ nextBtn.addEventListener("click", () => {
     }
   }
 });
-let prevBtn = document.getElementById("prev-btn");
 prevBtn.addEventListener("click", () => {
-  if (currentQuestionIndex > 0) {   
+  if (currentQuestionIndex > 0) {
     currentQuestionIndex--;
     render();
-}
+  }
 });
 render();
