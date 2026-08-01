@@ -266,6 +266,28 @@ body {
   color: #fff;
   transform: scale(1.1);
 }
+.option.correct {
+  border-color: var(--accent);
+  background-color: rgba(46, 160, 67, 0.18);
+}
+
+.option.incorrect {
+  border-color: var(--error-color);
+  background-color: rgba(248, 81, 73, 0.15);
+}
+
+.option.correct .option-letter {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+.option.incorrect .option-letter {
+  background-color: var(--error-color);
+  color: #fff;
+}
+.options-list.locked .option {
+    cursor: not-allowed;
+}
 
 .error-msg {
   display: none;

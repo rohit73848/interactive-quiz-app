@@ -63,13 +63,40 @@ function render() {
   let currentQuestion = questions[currentQuestionIndex];
   questionText.textContent = currentQuestion.question;
 
+  let isAnswered = userAnswers[currentQuestionIndex] !== null;
+
   let optionsHTML = currentQuestion.options
     .map((option, index) => {
-      return `<div class="option ${userAnswers[currentQuestionIndex] === index ? "selected" : ""}" data-index="${index}">${option}</div>`;
+      let optionClass = "";
+
+      if (isAnswered) {
+        if (index === currentQuestion.correctAnswer) {
+          optionClass = "correct";
+        } else if (index === userAnswers[currentQuestionIndex]) {
+          optionClass = "incorrect";
+        }
+      }
+
+      let letter = String.fromCharCode(65 + index);
+
+      return `
+        <div class="option ${optionClass}" data-index="${index}">
+          <span class="option-letter">${letter}</span>
+          ${option}
+        </div>
+      `;
     })
     .join("");
 
   optionsList.innerHTML = optionsHTML;
+
+  // locked class বসানো/সরানো — cursor বদলানোর জন্য
+  if (isAnswered) {
+    optionsList.classList.add("locked");
+  } else {
+    optionsList.classList.remove("locked");
+  }
+
   progressText.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
   progressBarFill.style.width = `${((currentQuestionIndex + 1) / questions.length) * 100}%`;
   nextBtn.textContent =
@@ -79,21 +106,21 @@ function render() {
 let userAnswers = new Array(questions.length).fill(null);
 
 optionsList.addEventListener("click", (e) => {
-  if (e.target.classList.contains("option")) {
-    let allOptions = document.querySelectorAll(".option");
-    allOptions.forEach((opt) => {
-      opt.classList.remove("selected");
-    });
-
-    e.target.classList.add("selected");
-    let selectedIndex = Number(e.target.dataset.index);
-    userAnswers[currentQuestionIndex] = selectedIndex;
+  if (userAnswers[currentQuestionIndex] !== null) {
+    return;
   }
-  errorMsg.style.display = "none";
+
+  if (e.target.classList.contains("option")) {
+    let clickedIndex = Number(e.target.dataset.index);
+    userAnswers[currentQuestionIndex] = clickedIndex;
+    errorMsg.style.display = "none";
+    render();
+  }
 });
+
 let nextBtn = document.getElementById("next-btn");
 nextBtn.addEventListener("click", () => {
-    if (userAnswers[currentQuestionIndex] === null) {
+  if (userAnswers[currentQuestionIndex] === null) {
     errorMsg.style.display = "block";
     return;
   }
@@ -102,7 +129,6 @@ nextBtn.addEventListener("click", () => {
     let score = questions.filter((question, index) => {
       return userAnswers[index] === question.correctAnswer;
     }).length;
-    console.log("Final Score:", score);
 
     quizBox.style.display = "none";
     resultBox.style.display = "block";
