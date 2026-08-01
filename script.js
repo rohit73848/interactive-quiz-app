@@ -76,8 +76,22 @@ optionsList.addEventListener("click", (e) => {
     });
 
     e.target.classList.add("selected");
-     let selectedIndex = Number(e.target.dataset.index);
+    let selectedIndex = Number(e.target.dataset.index);
     userAnswers[currentQuestionIndex] = selectedIndex;
   }
+});
+let nextBtn = document.getElementById("next-btn");
+nextBtn.addEventListener("click", () => {
+  if (currentQuestionIndex < questions.length - 1) {
+    currentQuestionIndex++;
+    render();
+  }
+});
+let prevBtn = document.getElementById("prev-btn");
+prevBtn.addEventListener("click", () => {
+  if (currentQuestionIndex > 0) {   
+    currentQuestionIndex--;
+    render();
+}
 });
 render();
