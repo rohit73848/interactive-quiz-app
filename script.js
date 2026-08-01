@@ -45,7 +45,6 @@ let questions = [
 ];
 
 let currentQuestionIndex = 0;
-let selectedAnswer = null;
 
 let questionText = document.getElementById("question-text");
 let optionsList = document.getElementById("options-list");
@@ -66,6 +65,9 @@ function render() {
   progressText.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
   progressBarFill.style.width = `${((currentQuestionIndex + 1) / questions.length) * 100}%`;
 }
+
+let userAnswers = new Array(questions.length).fill(null);
+
 optionsList.addEventListener("click", (e) => {
   if (e.target.classList.contains("option")) {
     let allOptions = document.querySelectorAll(".option");
@@ -74,6 +76,8 @@ optionsList.addEventListener("click", (e) => {
     });
 
     e.target.classList.add("selected");
+     let selectedIndex = Number(e.target.dataset.index);
+    userAnswers[currentQuestionIndex] = selectedIndex;
   }
 });
 render();
