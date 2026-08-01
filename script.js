@@ -1,6 +1,7 @@
 let questions = [
   {
-    question: "Which keyword is used to declare a variable that cannot be reassigned?",
+    question:
+      "Which keyword is used to declare a variable that cannot be reassigned?",
     options: ["var", "let", "const", "static"],
     correctAnswer: 2,
   },
@@ -25,12 +26,14 @@ let questions = [
     correctAnswer: 1,
   },
   {
-    question: "Which array method creates a new array with only elements that pass a condition?",
+    question:
+      "Which array method creates a new array with only elements that pass a condition?",
     options: ["map()", "forEach()", "filter()", "reduce()"],
     correctAnswer: 2,
   },
   {
-    question: "What will 'toggle-box' && 'checked' produce when used as a template literal class binding for a completed task?",
+    question:
+      "What will 'toggle-box' && 'checked' produce when used as a template literal class binding for a completed task?",
     options: [
       "toggle-box checked",
       "checked toggle-box",
@@ -40,3 +43,28 @@ let questions = [
     correctAnswer: 0,
   },
 ];
+
+let currentQuestionIndex = 0;
+let selectedAnswer = null;
+
+let questionText = document.getElementById("question-text");
+let optionsList = document.getElementById("options-list");
+let progressText = document.getElementById("progress-text");
+let progressBarFill = document.getElementById("progress-bar-fill");
+
+function render() {
+  let currentQuestion = questions[currentQuestionIndex];
+  questionText.textContent = currentQuestion.question;
+
+  let optionsHTML = currentQuestion.options
+    .map((option, index) => {
+      return `<div class="option" data-index="${index}">${option}</div>`;
+    })
+    .join("");
+
+  optionsList.innerHTML = optionsHTML;
+  progressText.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
+  progressBarFill.style.width = `${((currentQuestionIndex + 1) / questions.length) * 100}%`;
+}
+
+render();
