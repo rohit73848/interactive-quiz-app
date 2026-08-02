@@ -42,6 +42,53 @@ let questions = [
     ],
     correctAnswer: 0,
   },
+  {
+    question:
+      "Which operator checks both value and type equality in JavaScript?",
+    options: ["==", "=", "===", "!=="],
+    correctAnswer: 2,
+  },
+  {
+    question: "What does the .map() method return?",
+    options: [
+      "The original array, modified in place",
+      "A single value",
+      "A new array with transformed elements",
+      "undefined",
+    ],
+    correctAnswer: 2,
+  },
+  {
+    question: "Which method converts a JavaScript object into a JSON string?",
+    options: [
+      "JSON.parse()",
+      "JSON.stringify()",
+      "Object.toString()",
+      "JSON.convert()",
+    ],
+    correctAnswer: 1,
+  },
+  {
+    question:
+      "What is the correct way to add an event listener to a button in JavaScript?",
+    options: [
+      "button.onEvent('click', fn)",
+      "button.addEventListener('click', fn)",
+      "button.click(fn)",
+      "button.on('click', fn)",
+    ],
+    correctAnswer: 1,
+  },
+  {
+    question: "Which of these correctly reads data from localStorage?",
+    options: [
+      "localStorage.fetch('key')",
+      "localStorage.read('key')",
+      "localStorage.getItem('key')",
+      "localStorage.get('key')",
+    ],
+    correctAnswer: 2,
+  },
 ];
 
 let currentQuestionIndex = 0;
