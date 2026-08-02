@@ -106,7 +106,11 @@ function render() {
     .map((q, index) => {
       let classes = "dot";
       if (userAnswers[index] !== null) {
-        classes += " answered";
+        if (userAnswers[index] === questions[index].correctAnswer) {
+          classes += " answered";
+        } else {
+          classes += " incorrect";
+        }
       }
       if (index === currentQuestionIndex) {
         classes += " active";
@@ -168,5 +172,14 @@ retakeBtn.addEventListener("click", () => {
   resultBox.style.display = "none";
   render();
 });
-
+dots.addEventListener("click", (e) => {
+  if (e.target.classList.contains("dot")) {
+    let clickedIndex = Number(e.target.dataset.index);
+    if (userAnswers[clickedIndex] === null) {
+      return;
+    }
+    currentQuestionIndex = clickedIndex;
+    render();
+  }
+});
 render();

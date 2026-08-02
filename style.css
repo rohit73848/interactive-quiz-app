@@ -393,7 +393,9 @@ body {
   margin-bottom: 10px;
   animation: scoreEnter 0.4s ease 0.1s backwards;
 }
-
+.dot.incorrect {
+  background-color: var(--error-color);
+}
 @keyframes scoreEnter {
   from {
     opacity: 0;
