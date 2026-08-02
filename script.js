@@ -58,6 +58,7 @@ let resultScore = document.getElementById("result-score");
 let retakeBtn = document.getElementById("retake-btn");
 
 let prevBtn = document.getElementById("prev-btn");
+let dots = document.getElementById("dots");
 
 function render() {
   let currentQuestion = questions[currentQuestionIndex];
@@ -90,7 +91,6 @@ function render() {
 
   optionsList.innerHTML = optionsHTML;
 
-  // locked class বসানো/সরানো — cursor বদলানোর জন্য
   if (isAnswered) {
     optionsList.classList.add("locked");
   } else {
@@ -101,6 +101,21 @@ function render() {
   progressBarFill.style.width = `${((currentQuestionIndex + 1) / questions.length) * 100}%`;
   nextBtn.textContent =
     currentQuestionIndex === questions.length - 1 ? "Submit" : "Next";
+
+  let dotsHTML = questions
+    .map((q, index) => {
+      let classes = "dot";
+      if (userAnswers[index] !== null) {
+        classes += " answered";
+      }
+      if (index === currentQuestionIndex) {
+        classes += " active";
+      }
+      return `<span class="${classes}" data-index="${index}"></span>`;
+    })
+    .join("");
+
+  dots.innerHTML = dotsHTML;
 }
 
 let userAnswers = new Array(questions.length).fill(null);
@@ -153,4 +168,5 @@ retakeBtn.addEventListener("click", () => {
   resultBox.style.display = "none";
   render();
 });
+
 render();

@@ -99,7 +99,7 @@ body {
 
 .dots {
   display: flex;
-  gap: 6px;
+  gap: 10px;
 }
 
 .dot {
