@@ -14,7 +14,9 @@
   <body>
     <div class="main">
       <div class="app-header">
-        <span class="badge"><i class="ri-code-s-slash-line"></i> JavaScript Quiz</span>
+        <span class="badge"
+          ><i class="ri-code-s-slash-line"></i> JavaScript Quiz</span
+        >
         <h1 class="app-title">Test your knowledge</h1>
       </div>
 
@@ -22,7 +24,9 @@
       <div class="quiz-box" id="quiz-box">
         <div class="quiz-header">
           <div class="quiz-header-top">
-            <span class="progress-text" id="progress-text">Question 1 of 10</span>
+            <span class="progress-text" id="progress-text"
+              >Question 1 of 10</span
+            >
             <div class="dots" id="dots"></div>
           </div>
           <div class="progress-bar-track">
@@ -32,10 +36,10 @@
 
         <h2 class="question-text" id="question-text">Question goes here</h2>
 
-        <div class="options-list" id="options-list">
-        </div>
+        <div class="options-list" id="options-list"></div>
         <p class="error-msg" id="error-msg">
-          <i class="ri-error-warning-line"></i> Please select an answer to continue.
+          <i class="ri-error-warning-line"></i> Please select an answer to
+          continue.
         </p>
         <div class="quiz-footer">
           <button class="nav-btn" id="prev-btn">
@@ -52,8 +56,21 @@
         <p class="result-label">Your Score</p>
         <h2 class="result-score" id="result-score">0 / 10</h2>
         <p class="result-message" id="result-message">Well done!</p>
+        <div class="result-actions">
+          <button class="nav-btn" id="review-btn">
+          <i class="ri-file-list-3-line arrow"></i> Review Answers
+        </button>
         <button class="nav-btn primary" id="retake-btn">
           <i class="ri-refresh-line arrow"></i> Retake Quiz
+        </button>
+        </div>
+      </div>
+
+      <div class="review-box" id="review-box">
+        <h2 class="review-title">Review Answers</h2>
+        <div class="review-list" id="review-list"></div>
+        <button class="nav-btn primary" id="back-to-result-btn">
+          <i class="ri-arrow-left-double-line arrow"></i> Back to Result
         </button>
       </div>
     </div>

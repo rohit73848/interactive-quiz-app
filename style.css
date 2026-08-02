@@ -35,6 +35,16 @@ body {
   width: 100%;
   max-width: 520px;
 }
+body::-webkit-scrollbar {
+  width: 5px;
+}
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 10px;
+}
 
 /* Header */
 .app-header {
@@ -395,6 +405,70 @@ body {
 }
 .dot.incorrect {
   background-color: var(--error-color);
+}
+.result-actions {
+  display: flex;
+  gap: 30px;
+}
+
+.review-box {
+  display: none;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 28px;
+  animation: boxEnter 0.4s ease;
+}
+
+.review-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+.review-list::-webkit-scrollbar {
+  width: 5px;
+}
+.review-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.review-list::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 10px;
+}
+.review-item {
+  padding: 14px 16px;
+  background-color: var(--bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.review-question {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.review-answer {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.review-answer.correct-text {
+  color: var(--accent);
+}
+
+.review-answer.incorrect-text {
+  color: var(--error-color);
 }
 @keyframes scoreEnter {
   from {

@@ -61,6 +61,11 @@ let retakeBtn = document.getElementById("retake-btn");
 let prevBtn = document.getElementById("prev-btn");
 let dots = document.getElementById("dots");
 
+let reviewBtn = document.getElementById("review-btn");
+let reviewList = document.getElementById("review-list");
+let reviewBox = document.getElementById("review-box");
+let backToResultBtn = document.getElementById("back-to-result-btn");
+
 function render() {
   let currentQuestion = questions[currentQuestionIndex];
   questionText.textContent = currentQuestion.question;
@@ -191,5 +196,34 @@ dots.addEventListener("click", (e) => {
     currentQuestionIndex = clickedIndex;
     render();
   }
+});
+reviewBtn.addEventListener("click", () => {
+  let reviewHTML = questions
+    .map((q, index) => {
+      let userAnswerIndex = userAnswers[index];
+      let userAnswerText = q.options[userAnswerIndex];
+      let correctAnswerText = q.options[q.correctAnswer];
+      let isCorrect = userAnswerIndex === q.correctAnswer;
+
+      return `
+        <div class="review-item">
+          <p class="review-question">${index + 1}. ${q.question}</p>
+          <p class="review-answer ${isCorrect ? "correct-text" : "incorrect-text"}">
+            Your answer: ${userAnswerText}
+          </p>
+          ${!isCorrect ? `<p class="review-answer correct-text">Correct answer: ${correctAnswerText}</p>` : ""}
+        </div>
+      `;
+    })
+    .join("");
+
+  reviewList.innerHTML = reviewHTML;
+
+  resultBox.style.display = "none";
+  reviewBox.style.display = "block";
+});
+backToResultBtn.addEventListener("click", () => {
+  reviewBox.style.display = "none";
+  resultBox.style.display = "block";
 });
 render();
