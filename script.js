@@ -55,6 +55,7 @@ let errorMsg = document.getElementById("error-msg");
 let quizBox = document.getElementById("quiz-box");
 let resultBox = document.getElementById("result-box");
 let resultScore = document.getElementById("result-score");
+let resultMessage = document.getElementById("result-message");
 let retakeBtn = document.getElementById("retake-btn");
 
 let prevBtn = document.getElementById("prev-btn");
@@ -152,6 +153,15 @@ nextBtn.addEventListener("click", () => {
     quizBox.style.display = "none";
     resultBox.style.display = "block";
     resultScore.textContent = `${score} / ${questions.length}`;
+
+    let percentage = (score / questions.length) * 100;
+    console.log(percentage);
+    resultMessage.textContent =
+      percentage >= 80
+        ? "Excellent work!"
+        : percentage >= 50
+          ? "Good effort! Keep practicing."
+          : "Keep learning, you'll get there!";
   } else {
     if (currentQuestionIndex < questions.length - 1) {
       currentQuestionIndex++;
